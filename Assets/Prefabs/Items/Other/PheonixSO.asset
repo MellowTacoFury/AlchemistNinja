@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 111581514a888f1499209c0ac5eabbdb, type: 3}
-  m_Name: PotionItem
+  m_Script: {fileID: 11500000, guid: b167c6fa7eece1243b407ec96d74dd34, type: 3}
+  m_Name: PheonixSO
   m_EditorClassIdentifier: 
-  Name: SphereThing
-  Type: 1
+  ItemType: 3
