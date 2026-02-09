@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public List<Item_SO> AllItems;
+    public List<GameObject> AllPrefabItems;
+    public GameObject ingredientPanelPrefab;
+    public GameObject ingredientList;
+    private List<GameObject> panels = new();
+    public GameUI gameUI;
 
     public List<Item_SO> MakeRecipe(int recipeSize)
     {
@@ -24,17 +30,51 @@ public class GameManager : MonoBehaviour
         {
             int r;
             r = Random.Range(0, goodItems.Count);
-            // if(potion.Contains(goodItems[r]))
-            // {
-            //     //dont add a duplicate item
-            //     i--;
-            // }
-            // else
-            // {
-                potion.Add(goodItems[r]);
-            // }
+            potion.Add(goodItems[r]);
+            AddIngredientToUI(goodItems[r]);
         }
         return potion;
 
     }
+
+    public void AddIngredientToUI(Item_SO item)
+    {
+        GameObject panel = Instantiate(ingredientPanelPrefab);
+        panel.transform.SetParent(ingredientList.gameObject.transform);
+        panel.name = item.ItemName;
+        panel.GetComponent<Image>().sprite = item.image;
+        panel.GetComponent<Item>().item = item;
+        panels.Add(panel);
+    }
+
+    public void CrossOutPanel(Item_SO item)
+    {
+        foreach (var obj in panels)
+        {
+            if(obj.GetComponent<Item>().item == item)
+            {
+                if(obj.transform.GetChild(0).GetComponent<Image>().enabled == true)
+                {
+                    //if its already true, so keep looking
+                }
+                else
+                {
+                    obj.transform.GetChild(0).GetComponent<Image>().enabled = true;
+                    return;
+                }
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// 1 for win, 2 for overfill, 3 for bad objects
+    /// </summary>
+    public void GameOver(int ending, int wrongIngredients=-1)
+    {
+        gameUI.GO(ending, wrongIngredients);
+
+    }
+
+
 }

@@ -8,4 +8,5 @@ public class Item_SO : ScriptableObject {
     [Tooltip("1 is good, 2, is bad, 3 is powerups")]
     [Range(1, 3)]
     public int ItemType;
+    public Sprite image = null;
 }

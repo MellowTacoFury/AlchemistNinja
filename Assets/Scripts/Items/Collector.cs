@@ -11,6 +11,7 @@ public class Collector : MonoBehaviour
     public int maxOverfillIngredients = 15;
     private float wrongIngredients = 0;
     private float overFilledIngredients = 0;
+    public int potionSize = 5;
 
 
     [SerializeField] private List<Item_SO> current = new();//for the backend
@@ -18,7 +19,7 @@ public class Collector : MonoBehaviour
     void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
-        potion = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().MakeRecipe(5);
+        potion = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().MakeRecipe(potionSize);
         current = new List<Item_SO>(potion);
     }
     void OnTriggerEnter(Collider other)
@@ -43,6 +44,7 @@ public class Collector : MonoBehaviour
         //Checking
         if(current.Contains(item))
         {
+            gm.CrossOutPanel(item);
             current.Remove(item);
         }
         else
@@ -61,17 +63,17 @@ public class Collector : MonoBehaviour
         //End states
         if(wrongIngredients >= maxBadIngredients)
         {
-            Debug.LogError($"Loose from bad objects");
+            gm.GameOver(3);
         }
 
         if(overFilledIngredients >= maxOverfillIngredients)
         {
-            Debug.LogError("Loose from overfilled");
+            gm.GameOver(2);
         }
 
         if(current.Count == 0)
         {
-            Debug.LogError($"Win");
+            gm.GameOver(1, (int)(wrongIngredients+overFilledIngredients));
         }
     }
 }

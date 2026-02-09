@@ -8,6 +8,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] private GameObject creditsPanel;
     public void Start()
     {
+        Time.timeScale = 1;
         creditsPanel.SetActive(false);
     }
     public void StartGame(string levelToGoTo)

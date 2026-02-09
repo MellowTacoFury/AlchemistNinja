@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b167c6fa7eece1243b407ec96d74dd34, type: 3}
   m_Name: SunsGoldSO
   m_EditorClassIdentifier: 
-  ItemName: Default_Item_Name
+  ItemName: Suns Gold
   ItemType: 1
+  image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

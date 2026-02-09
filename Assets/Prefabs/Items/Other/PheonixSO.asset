@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b167c6fa7eece1243b407ec96d74dd34, type: 3}
   m_Name: PheonixSO
   m_EditorClassIdentifier: 
+  ItemName: Pheonix
   ItemType: 3
+  image: {fileID: 0}

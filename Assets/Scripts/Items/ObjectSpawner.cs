@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour
             GameObject prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
 
             if (Random.value < badItemChance) {
-                if(Random.Range(0,1) == 0)
+                if(Random.Range(0,2) == 0)
                 {
                     prefab = bombPrefabs[Random.Range(0, bombPrefabs.Length)];
                 }
