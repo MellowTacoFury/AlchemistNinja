@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject ingredientList;
     private List<GameObject> panels = new();
     public GameUI gameUI;
+    public bool GameDone = false;
 
-    public List<Item_SO> MakeRecipe(int recipeSize)
+    public List<Item_SO> MakeRecipe(int recipeSize, bool forOmni=false)
     {
         //take the good items and return a list of x amount
         List<Item_SO> goodItems = new();
@@ -31,7 +32,8 @@ public class GameManager : MonoBehaviour
             int r;
             r = Random.Range(0, goodItems.Count);
             potion.Add(goodItems[r]);
-            AddIngredientToUI(goodItems[r]);
+            if(forOmni == false)
+                AddIngredientToUI(goodItems[r]);
         }
         return potion;
 
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
     public void GameOver(int ending, int wrongIngredients=-1)
     {
         gameUI.GO(ending, wrongIngredients);
+        GameDone = true;
 
     }
 

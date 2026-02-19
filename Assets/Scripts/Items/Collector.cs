@@ -9,9 +9,12 @@ public class Collector : MonoBehaviour
     public GameManager gm;
     public int maxBadIngredients = 5;
     public int maxOverfillIngredients = 15;
-    private float wrongIngredients = 0;
-    private float overFilledIngredients = 0;
+    public float wrongIngredients = 0;
+    public float overFilledIngredients = 0;
     public int potionSize = 5;
+    private AudioSource audioSource;
+    public EndingController EC;
+    public List<AudioClip> clips;
 
 
     [SerializeField] private List<Item_SO> current = new();//for the backend
@@ -19,8 +22,9 @@ public class Collector : MonoBehaviour
     void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
-        potion = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().MakeRecipe(potionSize);
+        potion = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().MakeRecipe(potionSize, false);
         current = new List<Item_SO>(potion);
+        audioSource = GetComponent<AudioSource>();
     }
     void OnTriggerEnter(Collider other)
     {
@@ -34,7 +38,10 @@ public class Collector : MonoBehaviour
             else
             {
                 CheckPotion(item);
+                other.gameObject.GetComponent<Collider>().enabled = false;
+                Destroy(other.gameObject, 1);
             }
+            audioSource.Play();
             
         }
         
@@ -42,6 +49,7 @@ public class Collector : MonoBehaviour
     private void CheckPotion(Item_SO item)
     {
         //Checking
+        EC.CheckPotion(item);
         if(current.Contains(item))
         {
             gm.CrossOutPanel(item);
@@ -49,13 +57,15 @@ public class Collector : MonoBehaviour
         }
         else
         {
-            if(item.ItemType == 1)
+            if(item.ItemType == 1 || item.ItemType == 3)
             {
                 overFilledIngredients++;
+                GameObject.Find("Canvas").GetComponent<GameUI>().UpdateOverfillSlider();
             }
             else
             {
                 wrongIngredients++;
+                GameObject.Find("Canvas").GetComponent<GameUI>().UpdateBadSlider();
             }
         }
 
@@ -64,16 +74,25 @@ public class Collector : MonoBehaviour
         if(wrongIngredients >= maxBadIngredients)
         {
             gm.GameOver(3);
+            audioSource.Stop();
+            audioSource.volume = .4f;
+            audioSource.PlayOneShot(clips[1]);
         }
 
         if(overFilledIngredients >= maxOverfillIngredients)
         {
             gm.GameOver(2);
+            audioSource.Stop();
+            audioSource.volume = .4f;
+            audioSource.PlayOneShot(clips[1]);
         }
 
         if(current.Count == 0)
         {
             gm.GameOver(1, (int)(wrongIngredients+overFilledIngredients));
+            audioSource.Stop();
+            audioSource.volume = .6f;
+            audioSource.PlayOneShot(clips[0]);
         }
     }
 }

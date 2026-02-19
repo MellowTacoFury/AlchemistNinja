@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
@@ -9,8 +10,13 @@ public class GameUI : MonoBehaviour
     [SerializeField] GameObject goMenu;
     [SerializeField] List<GameObject> goPanels;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Slider overfillSlider;
+    [SerializeField] Slider badIngredientsSlider;
+    Collector collector;
     void Start()
     {
+        collector = GameObject.Find("Pot").GetComponent<Collector>();
+        SetSliders();
         UnpauseGame();
         goMenu.SetActive(false);
     }
@@ -56,5 +62,22 @@ public class GameUI : MonoBehaviour
             break;
         }
     }
+
+    public void SetSliders()
+    {
+        overfillSlider.maxValue = collector.maxOverfillIngredients;
+        badIngredientsSlider.maxValue = collector.maxBadIngredients;
+    }
+    public void UpdateOverfillSlider()
+    {
+        overfillSlider.gameObject.GetComponent<Animation>().Play();
+        overfillSlider.value = collector.overFilledIngredients;
+    }
+    public void UpdateBadSlider()
+    {
+        badIngredientsSlider.gameObject.GetComponent<Animation>().Play();
+        badIngredientsSlider.value = collector.wrongIngredients;
+    }
+
 
 }

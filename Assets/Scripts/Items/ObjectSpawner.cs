@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class Spawner : MonoBehaviour
 {
     private Collider spawnArea;
+    public List<AudioClip> spawnSounds;
 
     public GameObject[] fruitPrefabs;
     public GameObject[] bombPrefabs;
@@ -30,19 +32,19 @@ public class Spawner : MonoBehaviour
         spawnArea = GetComponent<Collider>();
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         StartCoroutine(Spawn());
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         StopAllCoroutines();
     }
 
     private IEnumerator Spawn()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         while (enabled)
         {
@@ -69,6 +71,8 @@ public class Spawner : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(transform.rotation.x, 0f, Random.Range(minZAngle, maxZAngle));
 
             GameObject fruit = Instantiate(prefab, position, rotation);
+
+            GetComponent<AudioSource>().PlayOneShot(spawnSounds[Random.Range(0, 2)]);
 
             float force = Random.Range(minForce, maxForce);
             fruit.GetComponent<Rigidbody>().AddForce(transform.up * force, ForceMode.Impulse);

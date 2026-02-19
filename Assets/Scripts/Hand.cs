@@ -14,34 +14,38 @@ public class Hand : MonoBehaviour
     }
     void Update()
     {
-        #if UNITY_STANDALONE
-        if(Input.GetMouseButtonDown(0))//press
+        if(GameObject.Find("Managers").GetComponent<GameManager>().GameDone == false)
         {
-            StartMouseSlice();
+            #if UNITY_STANDALONE
+            if(Input.GetMouseButtonDown(0))//press
+            {
+                StartMouseSlice();
+            }
+            else if(Input.GetMouseButtonUp(0))//release
+            {
+                StopSlice();
+            }
+            else if(slicing)//still slicing
+            {
+                ContinueMouseSlice();
+            }
+            #endif
+            #if UNITY_ANDROID
+            if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                StartFingerSlice();
+            }
+            else if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+                ContinueFingerSlice();
+            }
+            else if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)//release
+            {
+                StopSlice();
+            }
+            #endif
         }
-        else if(Input.GetMouseButtonUp(0))//release
-        {
-            StopSlice();
-        }
-        else if(slicing)//still slicing
-        {
-            ContinueMouseSlice();
-        }
-        #endif
-        #if UNITY_ANDROID
-        if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            StartFingerSlice();
-        }
-        else if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-            ContinueFingerSlice();
-        }
-        else if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)//release
-        {
-            StopSlice();
-        }
-        #endif
+        
         
     }
     void OnEnable()//just in case, make sure its set
@@ -65,6 +69,8 @@ public class Hand : MonoBehaviour
 
         slicing = true;
         handCollider.enabled = true;
+        GetComponent<AudioSource>().Play();
+        
     }
     void StopSlice()
     {
@@ -102,6 +108,7 @@ public class Hand : MonoBehaviour
 
         slicing = true;
         handCollider.enabled = true;
+        GetComponent<AudioSource>().Play();
     }
 
     void ContinueFingerSlice()

@@ -18,12 +18,16 @@ public class Item : MonoBehaviour
 
     private void Smack(Vector3 direction, Vector3 position, float force)
     {
-        Debug.Log("Shmacked");
         float angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0,0,angle);
 
+        #if UNITY_STANDALONE
+        gameObject.GetComponent<Rigidbody>().AddForceAtPosition(direction*force*2, position, ForceMode.Impulse);
+        #endif
+        #if UNITY_ANDROID
         gameObject.GetComponent<Rigidbody>().AddForceAtPosition(direction*force, position, ForceMode.Impulse);
+        #endif
 
     }
 }
