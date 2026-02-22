@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7446982638193270260}
   - component: {fileID: 883862680967638338}
   - component: {fileID: 4473054671737577481}
-  - component: {fileID: -6946930792296995300}
+  - component: {fileID: 6924548401956628891}
   m_Layer: 3
-  m_Name: FishScale_B
+  m_Name: Feather
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.387929, y: 7.1352634, z: 0.9980827}
-  m_Center: {x: 0, y: -0.10726522, z: 0}
+  m_Size: {x: 3.1211495, y: 8.63419, z: 0.9980824}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7446982638193270260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,7 +137,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b73a8c558e0a52645aec05671e3f4a5c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97f977027a405e941b22fab278b5998d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,7 +148,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6946930792296995300
+--- !u!114 &6924548401956628891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,4 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c117cb5d79706c4295b10ea83ea7e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 122bef200aca8a849ac9b9f48b834a2b, type: 2}
+  item: {fileID: 11400000, guid: fd0a38946ad63f244afabadc912271db, type: 2}

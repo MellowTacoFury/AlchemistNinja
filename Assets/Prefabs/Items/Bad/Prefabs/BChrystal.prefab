@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4473054671737577481}
   - component: {fileID: -6946930792296995300}
   m_Layer: 3
-  m_Name: FishScale_B
+  m_Name: BChrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b73a8c558e0a52645aec05671e3f4a5c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6abd64c2318c3f94aa38f2d1a1fe2fda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -160,4 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c117cb5d79706c4295b10ea83ea7e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 122bef200aca8a849ac9b9f48b834a2b, type: 2}
+  item: {fileID: 11400000, guid: 82a56a24db9e02b429978376f60b5fc3, type: 2}

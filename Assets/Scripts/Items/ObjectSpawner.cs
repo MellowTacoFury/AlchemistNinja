@@ -50,15 +50,9 @@ public class Spawner : MonoBehaviour
         {
             GameObject prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
 
-            if (Random.value < badItemChance) {
-                if(Random.Range(0,2) == 0)
-                {
+            if (Random.value < badItemChance) 
+            {
                     prefab = bombPrefabs[Random.Range(0, bombPrefabs.Length)];
-                }
-                else
-                {
-                    prefab = specialPrefabs[Random.Range(0, specialPrefabs.Length)];
-                }
             }
 
             Vector3 position = new Vector3
