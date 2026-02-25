@@ -11,6 +11,7 @@ public class EndingController : MonoBehaviour
     public Sprite bad;
     public Image potionImage;
     Collector collector;
+    public List<AudioClip> clips;
     [Header("Stuff to turn off")]
     public List<GameObject> permenentTurnOffs;
     public List<GameObject> goodTurnOns;
@@ -53,21 +54,21 @@ public class EndingController : MonoBehaviour
         {
             //do win
             potionImage.sprite = good;
-            PlayAndDoSomethingAfter(goodTurnOns);
+            PlayAndDoSomethingAfter(goodTurnOns, 0);
         }
         else
         {
             //do loose
             potionImage.sprite = bad;
             potionText.text = $"You did make the {potionNames[Random.Range(0, potionNames.Count)]} though!";
-            PlayAndDoSomethingAfter(badTurnOns);
+            PlayAndDoSomethingAfter(badTurnOns, 1);
         }
     }
-    public void PlayAndDoSomethingAfter(List<GameObject> l)
+    public void PlayAndDoSomethingAfter(List<GameObject> l, int num)
     {
-        StartCoroutine(PlayAnimationAndContinue(l));
+        StartCoroutine(PlayAnimationAndContinue(l, num));
     }
-    IEnumerator PlayAnimationAndContinue(List<GameObject> l)
+    IEnumerator PlayAnimationAndContinue(List<GameObject> l, int num)
     {
         anim.Play();
 
@@ -81,5 +82,6 @@ public class EndingController : MonoBehaviour
         {
             item.SetActive(true);
         }
+        GetComponent<AudioSource>().PlayOneShot(clips[num]);
     }
 }

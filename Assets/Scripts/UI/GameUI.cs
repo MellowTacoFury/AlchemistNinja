@@ -46,7 +46,7 @@ public class GameUI : MonoBehaviour
                 goPanels[0].SetActive(true);
                 goPanels[1].SetActive(false);
                 goPanels[2].SetActive(false);
-                text.text = $"You made the potion with only {wrongIngredients} wrong ingredients";
+                text.text = $"And you only used {wrongIngredients} wrong ingredients!";
                 break;
             case 2://overfill
                 goPanels[0].SetActive(false);

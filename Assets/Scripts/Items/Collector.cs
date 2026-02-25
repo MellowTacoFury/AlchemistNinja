@@ -13,6 +13,7 @@ public class Collector : MonoBehaviour
     public float overFilledIngredients = 0;
     public int potionSize = 5;
     private AudioSource audioSource;
+    public AudioSource bgMusic;
     public EndingController EC;
     public List<AudioClip> clips;
 
@@ -69,7 +70,7 @@ public class Collector : MonoBehaviour
             }
         }
 
-
+        bgMusic.Stop();
         //End states
         if(wrongIngredients >= maxBadIngredients)
         {
