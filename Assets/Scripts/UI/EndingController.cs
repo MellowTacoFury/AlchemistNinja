@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ public class EndingController : MonoBehaviour
     public Image endBackground;
     public GameObject hider;
     private Animation anim;
+    public TextMeshProUGUI potionText;
+    public List<string> potionNames;
 
 
 
@@ -56,6 +59,7 @@ public class EndingController : MonoBehaviour
         {
             //do loose
             potionImage.sprite = bad;
+            potionText.text = $"You did make the {potionNames[Random.Range(0, potionNames.Count)]} though!";
             PlayAndDoSomethingAfter(badTurnOns);
         }
     }
