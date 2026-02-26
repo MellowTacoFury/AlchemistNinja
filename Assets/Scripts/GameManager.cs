@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private List<GameObject> panels = new();
     public GameUI gameUI;
     public bool GameDone = false;
+    public bool GamePaused = false;
 
     public List<Item_SO> MakeRecipe(int recipeSize, bool forOmni=false)
     {

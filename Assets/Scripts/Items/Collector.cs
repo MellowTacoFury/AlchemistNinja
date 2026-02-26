@@ -70,7 +70,6 @@ public class Collector : MonoBehaviour
             }
         }
 
-        bgMusic.Stop();
         //End states
         if(wrongIngredients >= maxBadIngredients)
         {
@@ -78,6 +77,7 @@ public class Collector : MonoBehaviour
             audioSource.Stop();
             audioSource.volume = .4f;
             audioSource.PlayOneShot(clips[1]);
+        bgMusic.Stop();
         }
 
         if(overFilledIngredients >= maxOverfillIngredients)
@@ -86,6 +86,7 @@ public class Collector : MonoBehaviour
             audioSource.Stop();
             audioSource.volume = .4f;
             audioSource.PlayOneShot(clips[1]);
+        bgMusic.Stop();
         }
 
         if(current.Count == 0)
@@ -94,6 +95,7 @@ public class Collector : MonoBehaviour
             audioSource.Stop();
             audioSource.volume = .6f;
             audioSource.PlayOneShot(clips[0]);
+        bgMusic.Stop();
         }
     }
 }

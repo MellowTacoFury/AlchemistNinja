@@ -69,7 +69,8 @@ public class Hand : MonoBehaviour
 
         slicing = true;
         handCollider.enabled = true;
-        GetComponent<AudioSource>().Play();
+        if(GameObject.Find("Managers").GetComponent<GameManager>().GamePaused == false)
+            GetComponent<AudioSource>().Play();
         
     }
     void StopSlice()
@@ -108,7 +109,8 @@ public class Hand : MonoBehaviour
 
         slicing = true;
         handCollider.enabled = true;
-        GetComponent<AudioSource>().Play();
+        if(GameObject.Find("Managers").GetComponent<GameManager>().GamePaused == false)
+            GetComponent<AudioSource>().Play();
     }
 
     void ContinueFingerSlice()

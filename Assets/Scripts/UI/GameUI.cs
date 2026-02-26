@@ -22,12 +22,14 @@ public class GameUI : MonoBehaviour
     }
     public void PauseGame()
     {
+        GameObject.Find("Managers").GetComponent<GameManager>().GamePaused = true;
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
     }
     public void UnpauseGame()
     {
         Time.timeScale = 1f;
+        GameObject.Find("Managers").GetComponent<GameManager>().GamePaused = false;
         pauseMenu.SetActive(false);
     }
     public void ReturnToMenu(string menuName)
